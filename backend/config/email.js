@@ -10,16 +10,16 @@ const transporter = nodemailer.createTransport({
 
 async function sendPasswordResetEmail(toEmail, resetUrl) {
   await transporter.sendMail({
-    from: `"Movie Recommendation System" <${process.env.EMAIL_USER}>`,
+    from: `"MovieReco" <${process.env.EMAIL_USER}>`,
     to: toEmail,
     subject: "Reset your Movie Recommendation System password",
     html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px; color: #121214;">
         <h2 style="margin-bottom: 8px;">Reset your password</h2>
         <p style="color: #4a4a4a; line-height: 1.5;">
-          Someone requested a password reset for your Movie Recommendation System account. If this was you, click the button below - this link expires in 15 minutes.
+          Someone requested a password reset for your MovieReco account. If this was you, click the button below - this link expires in 15 minutes.
         </p>
-        <a href="${resetUrl}" style="display: inline-block; margin: 16px 0; padding: 12px 24px; background: #E8A33D; color: #121214; font-weight: 600; text-decoration: none; border-radius: 8px;">
+        <a href="${resetUrl}" style="display: inline-block; margin: 16px 0; padding: 12px 24px; background: #38bdf8; color: #010816; font-weight: 600; text-decoration: none; border-radius: 8px;">
           Reset Password
         </a>
         <p style="color: #8a8a8a; font-size: 13px; line-height: 1.5;">
