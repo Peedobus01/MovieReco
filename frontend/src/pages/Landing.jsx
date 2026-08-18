@@ -43,10 +43,11 @@ export default function Landing() {
                 Describe exactly what you're in the mood for. "A sci-fi movie about time travel, but with a strong emotional core." Our AI engine understands complex plots, tropes, and tones, giving you recommendations that actually make sense.
               </p>
             </div>
-            <div className="flex-1 w-full aspect-video bg-surfaceRaised border border-border rounded-xl flex items-center justify-center relative overflow-hidden group">
-              <span className="text-muted text-sm font-mono">[ Screenshot: For You Page / AI Search ]</span>
-              {/* Note: You can replace this div with an <img> tag later */}
-            </div>
+            <img 
+              src="/ai-search-demo.png" 
+              alt="AI Search Demo" 
+              className="flex-1 w-full rounded-xl border border-border shadow-lg" 
+            />
           </div>
 
           {/* Feature 2 */}
@@ -57,10 +58,11 @@ export default function Landing() {
                 Keep track of everything you watch. Rate your favorite films, save movies for later in your watchlist, and build a taste profile that gets sharper with every rating you provide.
               </p>
             </div>
-            <div className="flex-1 w-full aspect-video bg-surfaceRaised border border-border rounded-xl flex items-center justify-center relative overflow-hidden group">
-              <span className="text-muted text-sm font-mono">[ Screenshot: Dashboard / Movie Details ]</span>
-              {/* Note: You can replace this div with an <img> tag later */}
-            </div>
+            <img 
+              src="/dashboard-demo.jpg" 
+              alt="Dashboard Demo" 
+              className="flex-1 w-full rounded-xl border border-border shadow-lg" 
+            />
           </div>
 
         </section>
