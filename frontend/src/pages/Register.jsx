@@ -45,8 +45,13 @@ export default function Register() {
 
       <div className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm">
-          <div className="mb-8 lg:hidden">
-            <span className="font-display text-xl font-semibold text-cream">Movie Recommendation System</span>
+          <div className="mb-8">
+            <Link to="/" className="inline-flex items-center text-sm font-medium text-muted hover:text-cream transition-colors">
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Home
+            </Link>
           </div>
 
           <h2 className="font-display text-3xl font-semibold text-cream mb-1">Create your account</h2>

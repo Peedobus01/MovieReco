@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // A cleaner, logo-centric editorial panel
 export default function AuthVisualPanel({ eyebrow, headline, sub }) {
   return (
@@ -10,7 +12,9 @@ export default function AuthVisualPanel({ eyebrow, headline, sub }) {
 
       <div className="relative z-10 max-w-md text-center">
         <div className="mb-10 flex justify-center">
-          <img src="/movie-reco-logo.png" alt="MovieReco Logo" className="w-64 drop-shadow-xl" />
+          <Link to="/" className="cursor-pointer hover:opacity-80 transition-opacity">
+            <img src="/movie-reco-logo.png" alt="MovieReco Logo" className="w-64 drop-shadow-xl" />
+          </Link>
         </div>
 
         <span className="inline-block px-3 py-1.5 mb-6 text-xs font-mono tracking-widest text-primary border border-primary/40 rounded uppercase bg-primary/10">
