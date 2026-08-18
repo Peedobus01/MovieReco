@@ -68,6 +68,7 @@ MovieReco/
 - [Node.js](https://nodejs.org/) v18 or later, and npm
 - A free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account
 - A free [TMDB](https://www.themoviedb.org/) account
+- A free [Brevo](https://www.brevo.com/) account (for sending password reset emails)
 - A free [Google AI Studio](https://aistudio.google.com/apikey) account (optional — the app works without this, just without AI-generated explanations)
 - Git
 
@@ -91,6 +92,11 @@ cd MovieReco
 1. Sign up at [themoviedb.org/signup](https://www.themoviedb.org/signup)
 2. Go to Settings → API → Request/Create an API key (choose "Developer," any reasonable use-case description works)
 3. Copy the **API Key (v3 auth)** value
+
+### Brevo (email sending)
+1. Sign up for a free account at [brevo.com](https://www.brevo.com)
+2. Go to Senders & IPs and verify your sender email address
+3. Go to SMTP & API → API Keys and generate your `BREVO_API_KEY`
 
 ### Gemini (optional — AI-generated recommendation explanations)
 1. Sign in at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) with a Google account
@@ -119,8 +125,8 @@ TMDB_API_KEY=your_tmdb_api_key
 TMDB_BASE_URL=https://api.themoviedb.org/3
 TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
 
-EMAIL_USER=your_gmail_address@gmail.com
-EMAIL_APP_PASSWORD=the_16_char_app_password_no_spaces
+EMAIL_USER=your_verified_gmail_address@gmail.com
+BREVO_API_KEY=your_brevo_api_key_here
 
 CLIENT_URL=http://localhost:5173
 ```
