@@ -1,18 +1,16 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_APP_PASSWORD,
-  },
-});
+// We initialize Resend using the API key you will provide in Render
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendPasswordResetEmail(toEmail, resetUrl) {
-  await transporter.sendMail({
-    from: `"MovieReco" <${process.env.EMAIL_USER}>`,
+  // Resend requires a custom domain to send from an official address. 
+  // For free accounts without a domain, you MUST use 'onboarding@resend.dev' 
+  // and you can only send emails TO the email address you registered with.
+  const { data, error } = await resend.emails.send({
+    from: "MovieReco <onboarding@resend.dev>",
     to: toEmail,
-    subject: "Reset your Movie Recommendation System password",
+    subject: "Reset your MovieReco password",
     html: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px; color: #121214;">
         <h2 style="margin-bottom: 8px;">Reset your password</h2>
@@ -28,6 +26,10 @@ async function sendPasswordResetEmail(toEmail, resetUrl) {
       </div>
     `,
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }
 
 module.exports = { sendPasswordResetEmail };
