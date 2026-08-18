@@ -8,7 +8,7 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/home";
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -42,16 +42,16 @@ export default function Login() {
       <div className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm">
           <div className="mb-8 lg:hidden">
-            <span className="font-display text-2xl font-semibold text-cream">CineMatch</span>
+            <span className="font-display text-xl font-semibold text-cream">Movie Recommendation System</span>
           </div>
 
           <h2 className="font-display text-3xl font-semibold text-cream mb-1">Log in</h2>
           <p className="text-muted text-sm mb-8">
-            New here? <Link to="/register" className="text-amber hover:text-amber-soft">Create an account</Link>
+            New here? <Link to="/register" className="text-primary hover:text-primary-soft">Create an account</Link>
           </p>
 
           {error && (
-            <div className="mb-5 rounded-card border border-amber-dim/40 bg-amber/10 px-4 py-3 text-sm text-amber-soft">
+            <div className="mb-5 rounded-card border border-primary-dim/40 bg-primary/10 px-4 py-3 text-sm text-primary-soft">
               {error}
             </div>
           )}
@@ -75,7 +75,7 @@ export default function Login() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label htmlFor="password" className="block text-sm text-muted">Password</label>
-                <Link to="/forgot-password" className="text-xs text-amber hover:text-amber-soft">
+                <Link to="/forgot-password" className="text-xs text-primary hover:text-primary-soft">
                   Forgot password?
                 </Link>
               </div>

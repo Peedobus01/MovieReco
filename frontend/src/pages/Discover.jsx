@@ -117,7 +117,7 @@ export default function Discover() {
                   onClick={() => toggleGenre(g.id)}
                   className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                     isSelected
-                      ? "bg-amber text-ink border-amber font-semibold"
+                      ? "bg-primary text-ink border-primary font-semibold"
                       : isDisabled
                       ? "border-border text-muted/50 cursor-not-allowed"
                       : "border-border text-muted hover:text-cream hover:border-cream/40"
@@ -183,7 +183,7 @@ export default function Discover() {
       </div>
 
       {error && (
-        <div className="mb-6 rounded-card border border-amber-dim/40 bg-amber/10 px-4 py-3 text-sm text-amber-soft">{error}</div>
+        <div className="mb-6 rounded-card border border-primary-dim/40 bg-primary/10 px-4 py-3 text-sm text-primary-soft">{error}</div>
       )}
 
       {hasSearched && !loading && results.length === 0 && !error && (

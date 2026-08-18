@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <p className="font-mono text-xs tracking-[0.2em] text-amber uppercase mb-3">Welcome back</p>
+      <p className="font-mono text-xs tracking-[0.2em] text-primary uppercase mb-3">Welcome back</p>
       <h1 className="font-display text-4xl font-semibold text-cream mb-10">
         Hey {user?.name?.split(" ")[0]}, ready for something new?
       </h1>

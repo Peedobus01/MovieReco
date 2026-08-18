@@ -60,7 +60,7 @@ export default function Watchlist() {
       <p className="text-muted text-sm mb-8">Movies you've saved to watch later.</p>
 
       {loading && <p className="text-muted font-mono text-sm">Loading...</p>}
-      {error && <p className="text-amber-soft text-sm">{error}</p>}
+      {error && <p className="text-primary-soft text-sm">{error}</p>}
 
       {!loading && !error && movies.length === 0 && (
         <p className="text-muted text-sm">

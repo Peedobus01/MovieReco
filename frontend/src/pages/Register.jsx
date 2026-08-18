@@ -29,7 +29,7 @@ export default function Register() {
     const result = await register(form);
     setSubmitting(false);
     if (result.success) {
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
     } else {
       setError(result.message);
     }
@@ -40,22 +40,22 @@ export default function Register() {
       <AuthVisualPanel
         eyebrow="Get started"
         headline="Structured filters. Real ratings. Zero noise."
-        sub="Tell CineMatch what you love once, and every recommendation after that gets sharper."
+        sub="Tell the Movie Recommendation System what you love once, and every recommendation after that gets sharper."
       />
 
       <div className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm">
           <div className="mb-8 lg:hidden">
-            <span className="font-display text-2xl font-semibold text-cream">CineMatch</span>
+            <span className="font-display text-xl font-semibold text-cream">Movie Recommendation System</span>
           </div>
 
           <h2 className="font-display text-3xl font-semibold text-cream mb-1">Create your account</h2>
           <p className="text-muted text-sm mb-8">
-            Already have one? <Link to="/login" className="text-amber hover:text-amber-soft">Log in</Link>
+            Already have one? <Link to="/login" className="text-primary hover:text-primary-soft">Log in</Link>
           </p>
 
           {error && (
-            <div className="mb-5 rounded-card border border-amber-dim/40 bg-amber/10 px-4 py-3 text-sm text-amber-soft">
+            <div className="mb-5 rounded-card border border-primary-dim/40 bg-primary/10 px-4 py-3 text-sm text-primary-soft">
               {error}
             </div>
           )}

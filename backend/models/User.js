@@ -35,6 +35,15 @@ const userSchema = new mongoose.Schema(
       type: Date,
       select: false,
     },
+    geminiApiKey: {
+      type: String,
+      select: false,
+      default: "",
+    },
+    llmUsage: {
+      count: { type: Number, default: 0 },
+      lastReset: { type: Date, default: Date.now },
+    },
     // --- Derived preference data, recalculated whenever the user rates a movie ---
     preferences: {
       favouriteGenres: [

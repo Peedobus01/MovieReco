@@ -13,12 +13,14 @@ import Recommendations from "./pages/Recommendations";
 import Placeholder from "./pages/Placeholder";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Landing from "./pages/Landing";
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
         {/* Public auth routes render without the navbar shell */}
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -28,7 +30,7 @@ export default function App() {
         <Route element={<AppLayout />}>
           {/* Private routes — require a logged-in user */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             {/* <Route
               path="/discover"
               element={

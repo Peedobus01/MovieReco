@@ -1,7 +1,7 @@
 {
   "name": "cinematch-backend",
   "version": "1.0.0",
-  "description": "Backend for CineMatch - Personalized Movie Discovery Platform",
+  "description": "Backend for Movie Recommendation System",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

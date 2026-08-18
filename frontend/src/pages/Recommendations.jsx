@@ -51,6 +51,7 @@ export default function Recommendations() {
   const [usedLLM, setUsedLLM] = useState(saved?.usedLLM ?? false);
   const [referenceMatchApplied, setReferenceMatchApplied] = useState(saved?.referenceMatchApplied ?? null);
   const [referenceTitle, setReferenceTitle] = useState(saved?.referenceTitle ?? null);
+  const [hasApiKey, setHasApiKey] = useState(saved?.hasApiKey ?? true);
   const [loading, setLoading] = useState(!saved);
   const [error, setError] = useState("");
   const [activeLabel, setActiveLabel] = useState(saved?.activeLabel ?? "Personalized for you");
@@ -61,6 +62,7 @@ export default function Recommendations() {
     setUsedLLM(data.usedLLM);
     setReferenceMatchApplied(data.referenceMatchApplied ?? null);
     setReferenceTitle(data.referenceTitle ?? null);
+    setHasApiKey(data.hasApiKey ?? true);
     if (label) setActiveLabel(label);
 
     saveState({
@@ -68,6 +70,7 @@ export default function Recommendations() {
       recommendations: data.recommendations,
       isColdStart: data.isColdStart,
       usedLLM: data.usedLLM,
+      hasApiKey: data.hasApiKey ?? true,
       referenceMatchApplied: data.referenceMatchApplied ?? null,
       referenceTitle: data.referenceTitle ?? null,
       activeLabel: label ?? activeLabel,
@@ -129,6 +132,21 @@ export default function Recommendations() {
         Personalized picks based on your ratings, or ask for something specific.
       </p>
 
+      {hasApiKey === false && (
+        <div className="mb-6 p-4 bg-red-900/20 border border-red-900/40 rounded-card flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          <div>
+            <h3 className="text-red-400 font-semibold text-sm mb-1">AI Features Disabled</h3>
+            <p className="text-muted text-xs">You need to set up your Gemini API Key in your profile to enable smart search and AI recommendations.</p>
+          </div>
+          <button 
+            onClick={() => navigate("/profile")}
+            className="text-xs px-4 py-2 bg-surfaceRaised border border-border rounded hover:bg-surface transition-colors whitespace-nowrap text-cream"
+          >
+            Setup API Key
+          </button>
+        </div>
+      )}
+
       <form onSubmit={handleSearch} className="flex gap-2 mb-2">
         <input
           type="text"
@@ -155,12 +173,12 @@ export default function Recommendations() {
           </span>
         )}
         {usedLLM && (
-          <span className="text-[10px] font-mono uppercase tracking-wide text-amber border border-amber/40 rounded-full px-2 py-0.5">
+          <span className="text-[10px] font-mono uppercase tracking-wide text-primary border border-primary/40 rounded-full px-2 py-0.5">
             AI-explained
           </span>
         )}
         {referenceMatchApplied === true && (
-          <span className="text-[10px] font-mono uppercase tracking-wide text-amber border border-amber/40 rounded-full px-2 py-0.5">
+          <span className="text-[10px] font-mono uppercase tracking-wide text-primary border border-primary/40 rounded-full px-2 py-0.5">
             Matched to "{referenceTitle}"
           </span>
         )}
@@ -172,7 +190,7 @@ export default function Recommendations() {
       </div>
 
       {loading && <p className="text-muted font-mono text-sm">Thinking...</p>}
-      {error && <p className="text-amber-soft text-sm">{error}</p>}
+      {error && <p className="text-primary-soft text-sm">{error}</p>}
 
       {!loading && !error && recommendations.length === 0 && (
         <p className="text-muted text-sm">No recommendations yet — try rating a few movies first.</p>

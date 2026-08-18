@@ -71,7 +71,7 @@ export default function PersonAutocomplete({ selected, onChange, placeholder, ma
           {selected.map((p) => (
             <span key={p.id} className="flex items-center gap-1.5 bg-surfaceRaised border border-border rounded-full pl-3 pr-2 py-1 text-xs text-cream">
               {p.name}
-              <button type="button" onClick={() => handleRemove(p.id)} className="text-muted hover:text-amber leading-none" aria-label={`Remove ${p.name}`}>
+              <button type="button" onClick={() => handleRemove(p.id)} className="text-muted hover:text-primary leading-none" aria-label={`Remove ${p.name}`}>
                 ×
               </button>
             </span>

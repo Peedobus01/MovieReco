@@ -1,4 +1,4 @@
-# CineMatch — Personalized Movie Discovery Platform
+# MovieReco — Personalized Movie Discovery Platform
 
 A full-stack MERN application that uses **TMDB** as the movie data source of
 truth while all personalization, ranking, ratings, and recommendation logic
@@ -43,7 +43,7 @@ helps you decide what to watch next.
 
 ## Project structure
 
-CineMatch/
+MovieReco/
   backend/
     config/          - DB, TMDB client, Gemini client
     controllers/
@@ -75,7 +75,7 @@ CineMatch/
 
 ```bash
 git clone <your-repo-url>
-cd CineMatch
+cd MovieReco
 ```
 
 ## 2. Get your API keys
@@ -95,9 +95,7 @@ cd CineMatch
 ### Gemini (optional — AI-generated recommendation explanations)
 1. Sign in at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) with a Google account
 2. Create an API key — no billing setup needed for the Flash/Flash-Lite models
-3. If you ever hit a free-tier quota limit and recommendations seem to lose their AI-written explanations, check which models your key can access at:
-   `https://generativelanguage.googleapis.com/v1beta/models?key=YOUR_KEY`
-   and swap the `GEMINI_MODEL` value in `.env` to another available model. The app degrades gracefully either way — recommendations still work without Gemini, just with simpler auto-generated explanations.
+3. **Important:** Do NOT add this key to your `.env` file! Instead, launch the app, log in to your account, and navigate to the **Profile** page. There you will find an input box where you can securely save your Gemini API Key directly into your user profile. The app will use this key specifically for generating your personalized explanations.
 
 ## 3. Backend setup
 
@@ -121,8 +119,8 @@ TMDB_API_KEY=your_tmdb_api_key
 TMDB_BASE_URL=https://api.themoviedb.org/3
 TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
 
-GEMINI_API_KEY=your_gemini_api_key
-GEMINI_MODEL=gemini-flash-lite-latest
+EMAIL_USER=your_gmail_address@gmail.com
+EMAIL_APP_PASSWORD=the_16_char_app_password_no_spaces
 
 CLIENT_URL=http://localhost:5173
 ```
@@ -131,7 +129,7 @@ Start the backend:
 ```bash
 npm run dev
 ```
-You should see `MongoDB connected` followed by `CineMatch backend running... on port 5000`. If either line is missing, double-check the corresponding `.env` value.
+You should see `MongoDB connected` followed by `MovieReco backend running... on port 5000`. If either line is missing, double-check the corresponding `.env` value.
 
 Quick sanity check in a separate terminal:
 ```bash

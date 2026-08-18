@@ -12,7 +12,7 @@ export default function MovieCard({ movie, genreMap = {}, onClick }) {
   return (
     <button
     onClick={() => onClick?.(movie)}
-    className="group w-full block text-left bg-surface border border-border rounded-card overflow-hidden hover:border-amber/50 transition-colors"
+    className="group w-full block text-left bg-surface border border-border rounded-card overflow-hidden hover:border-primary/50 transition-colors"
     >
       <div className="aspect-[2/3] bg-surfaceRaised relative overflow-hidden">
         {poster ? (
@@ -23,7 +23,7 @@ export default function MovieCard({ movie, genreMap = {}, onClick }) {
           </div>
         )}
         <div className="absolute top-2 right-2 bg-ink/80 rounded-full backdrop-blur">
-          <RatingBadge score={movie.vote_average} size={36} />
+          <RatingBadge score={movie.vote_average} size={36} color="#ef4444" />
         </div>
       </div>
 

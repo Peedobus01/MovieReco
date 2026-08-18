@@ -71,6 +71,23 @@ export default function MovieDetails() {
     }
   };
 
+  const handleRemoveRating = async () => {
+    if (!window.confirm("Are you sure you want to remove your rating?")) return;
+    setSavingRating(true);
+    try {
+      await movieService.removeRating(tmdbId);
+      setMyRating(0);
+      setReview("");
+      setRatingSaved(false);
+      const updated = await movieService.getMovieDetails(tmdbId);
+      setMovie(updated);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingRating(false);
+    }
+  };
+
   const handleWatchlistToggle = async () => {
     setWatchlistBusy(true);
     try {
@@ -93,7 +110,7 @@ export default function MovieDetails() {
   if (error || !movie) {
     return (
       <div className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-amber-soft mb-4">{error || "Movie not found"}</p>
+        <p className="text-primary-soft mb-4">{error || "Movie not found"}</p>
         <button onClick={() => navigate(-1)} className="text-muted hover:text-cream text-sm">← Go back</button>
       </div>
     );
@@ -122,7 +139,7 @@ export default function MovieDetails() {
             onClick={handleWatchlistToggle}
             disabled={watchlistBusy}
             className={`w-full mt-4 rounded-card px-4 py-2.5 text-sm font-semibold transition-colors ${
-              inWatchlist ? "bg-surfaceRaised border border-amber text-amber" : "bg-amber text-ink hover:bg-amber-soft"
+              inWatchlist ? "bg-surfaceRaised border border-primary text-primary" : "bg-primary text-ink hover:bg-primary-soft"
             }`}
           >
             {inWatchlist ? "✓ In Watchlist" : "+ Add to Watchlist"}
@@ -130,7 +147,7 @@ export default function MovieDetails() {
         </div>
 
         <div>
-          <p className="font-mono text-xs tracking-[0.2em] text-amber uppercase mb-2">{year}</p>
+          <p className="font-mono text-xs tracking-[0.2em] text-primary uppercase mb-2">{year}</p>
           <h1 className="font-display text-3xl font-semibold text-cream mb-3">{movie.title}</h1>
 
           <div className="flex items-center gap-6 mb-5">
@@ -193,7 +210,18 @@ export default function MovieDetails() {
           )}
 
           <div className="bg-surface border border-border rounded-card p-5">
-            <h3 className="text-sm text-muted mb-3">Your rating</h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm text-muted">Your rating</h3>
+              {myRating > 0 && (
+                <button 
+                  onClick={handleRemoveRating} 
+                  disabled={savingRating}
+                  className="text-xs text-red-500 hover:text-red-400 transition-colors"
+                >
+                  Remove rating
+                </button>
+              )}
+            </div>
             <StarRating value={myRating} onRate={handleRate} />
             <textarea
               value={review}
@@ -204,7 +232,7 @@ export default function MovieDetails() {
               className="input-field mt-4 resize-none"
             />
             {savingRating && <p className="text-xs text-muted font-mono mt-2">Saving...</p>}
-            {ratingSaved && !savingRating && <p className="text-xs text-amber font-mono mt-2">Saved ✓</p>}
+            {ratingSaved && !savingRating && <p className="text-xs text-primary font-mono mt-2">Saved ✓</p>}
           </div>
         </div>
       </div>

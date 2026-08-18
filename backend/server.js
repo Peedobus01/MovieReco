@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 // If the DB connection fails, connectDB() exits the process (see config/db.js).
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`CineMatch backend running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
+    console.log(`Movie Recommendation System backend running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
   });
 });
 

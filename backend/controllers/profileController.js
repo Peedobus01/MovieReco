@@ -41,5 +41,37 @@ const getMyProfile = asyncHandler(async (req, res) => {
     },
   });
 });
+const updateApiKeys = asyncHandler(async (req, res) => {
+  const { gemini } = req.body;
+  
+  const updateQuery = {};
+  if (gemini !== undefined) updateQuery.geminiApiKey = gemini;
 
-module.exports = { getMyProfile };
+  if (Object.keys(updateQuery).length > 0) {
+    await User.findByIdAndUpdate(req.user._id, { $set: updateQuery });
+  }
+
+  res.json({ success: true, message: "API Keys updated successfully" });
+});
+
+const getLlmUsage = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select("+llmUsage +geminiApiKey");
+  
+  let count = user.llmUsage?.count || 0;
+  const lastReset = user.llmUsage?.lastReset ? new Date(user.llmUsage.lastReset) : new Date();
+  const now = new Date();
+  
+  if (now.getDate() !== lastReset.getDate() || now.getMonth() !== lastReset.getMonth() || now.getFullYear() !== lastReset.getFullYear()) {
+    count = 0;
+  }
+
+  res.json({ 
+    success: true, 
+    data: { 
+      usageToday: count,
+      hasGeminiKey: !!user.geminiApiKey
+    } 
+  });
+});
+
+module.exports = { getMyProfile, updateApiKeys, getLlmUsage };

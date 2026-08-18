@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#121214",        // primary background
-        surface: "#1B1C1F",    // card / panel background
-        surfaceRaised: "#232427",
-        border: "#2E2F33",
-        cream: "#EDEAE3",      // primary text
-        muted: "#8B8B93",      // secondary text
-        amber: {
-          DEFAULT: "#E8A33D",  // signature accent - projector light
-          dim: "#C7842A",
-          soft: "#F4C878",
+        ink: "#010816",        // Very dark blue/black background
+        surface: "#0b182f",    // Dark blue card / panel background
+        surfaceRaised: "#162846", // Raised panels
+        border: "#253b61",     // Borders
+        cream: "#f8fafc",      // Primary text
+        muted: "#94a3b8",      // Secondary text
+        primary: { 
+          DEFAULT: "#38bdf8",  // Bright light blue/cyan
+          dim: "#0284c7",      
+          soft: "#7dd3fc",     
         },
       },
       fontFamily: {

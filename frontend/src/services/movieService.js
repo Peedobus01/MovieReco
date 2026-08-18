@@ -43,6 +43,10 @@ const rateMovie = async (tmdbId, rating, review = "") => {
   return data.data;
 };
 
+const removeRating = async (tmdbId) => {
+  await api.delete(`/ratings/${tmdbId}`);
+};
+
 const checkWatchlist = async (tmdbId) => {
   const { data } = await api.get(`/watchlist/${tmdbId}/check`);
   return data.data.inWatchlist;
@@ -108,4 +112,5 @@ export default {
   getNowPlaying,
   getWatchlist,
   getMostPopular,
+  removeRating,
 };

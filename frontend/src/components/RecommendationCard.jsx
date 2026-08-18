@@ -8,7 +8,7 @@ export default function RecommendationCard({ movie, onClick }) {
   return (
     <button
       onClick={() => onClick?.(movie)}
-      className="w-full flex gap-4 text-left bg-surface border border-border rounded-card p-4 hover:border-amber/50 transition-colors"
+      className="w-full flex gap-4 text-left bg-surface border border-border rounded-card p-4 hover:border-primary/50 transition-colors"
     >
       <div className="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden bg-surfaceRaised">
         {poster ? (
@@ -31,7 +31,7 @@ export default function RecommendationCard({ movie, onClick }) {
 
         {movie.reason && (
           <p className="text-sm text-cream/80 mt-2 leading-relaxed">
-            <span className="text-amber font-mono text-xs uppercase tracking-wide mr-1.5">Why this:</span>
+            <span className="text-primary font-mono text-xs uppercase tracking-wide mr-1.5">Why this:</span>
             {movie.reason}
           </p>
         )}
