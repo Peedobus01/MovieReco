@@ -1,17 +1,18 @@
-const { Resend } = require("resend");
-
-// We initialize Resend using the API key you will provide in Render
-const resend = new Resend(process.env.RESEND_API_KEY);
+const axios = require("axios");
 
 async function sendPasswordResetEmail(toEmail, resetUrl) {
-  // Resend requires a custom domain to send from an official address. 
-  // For free accounts without a domain, you MUST use 'onboarding@resend.dev' 
-  // and you can only send emails TO the email address you registered with.
-  const { data, error } = await resend.emails.send({
-    from: "MovieReco <onboarding@resend.dev>",
-    to: toEmail,
+  const data = {
+    sender: {
+      name: "MovieReco",
+      email: process.env.EMAIL_USER // Your verified Brevo sender email
+    },
+    to: [
+      {
+        email: toEmail
+      }
+    ],
     subject: "Reset your MovieReco password",
-    html: `
+    htmlContent: `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px; color: #121214;">
         <h2 style="margin-bottom: 8px;">Reset your password</h2>
         <p style="color: #4a4a4a; line-height: 1.5;">
@@ -24,11 +25,18 @@ async function sendPasswordResetEmail(toEmail, resetUrl) {
           If you didn't request this, you can safely ignore this email - your password won't be changed.
         </p>
       </div>
-    `,
-  });
+    `
+  };
 
-  if (error) {
-    throw new Error(error.message);
+  try {
+    await axios.post("https://api.brevo.com/v3/smtp/email", data, {
+      headers: {
+        "api-key": process.env.BREVO_API_KEY,
+        "Content-Type": "application/json"
+      }
+    });
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
   }
 }
 
